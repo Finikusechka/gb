@@ -1,0 +1,71 @@
+# Задание 1
+
+var1 = 10
+print(var1)
+var2 = 5
+var3 =6
+print(var2, var3)
+
+# Задание 2
+
+sec = int(input('Введите время в секундах > '))
+min = sec // 60
+hour = min // 60
+if hour < 10:
+    zero_hour = 0
+else: zero_hour = ''
+sec = sec % 60
+if sec < 10:
+    zero_sec = 0
+else: zero_sec = ''
+min = min % 60
+if min < 10:
+    zero_min = 0
+else: zero_min = ''
+if hour >= 24:
+    print('Перевожу не больше суток :( ')
+else: print(f"{zero_hour}{hour}:{zero_min}{min}:{zero_sec}{sec}")
+
+# Задание 3
+
+number = int(input('Введите число x для подстановки в формулу x+xx+xxx > '))
+number2 = number * 11
+number3 = number * 111
+summ = number + number2 + number3
+print(summ)
+
+# Задание 4
+
+# Не решил задачу
+
+#5
+
+profit = int(input('Введите свою прибыль > '))
+cost = int(input('Введите расходы фирмы > '))
+profitability = int(0) #Рентабельность
+gain = int #Выручка
+people = int #Количество сотрудников
+profit_on_people = int
+#print(profit, cost) Вывод
+if profit > cost:
+    print('Поздравляем, Вы в плюсе')
+    gain = profit - cost
+    profitability = profit / gain
+    people = int(input('Сколько у Вас сотрудников ? '))
+    profit_on_people = profit / people
+    print('Ваша рентабельность :', profitability)
+    print(f"Каждый Ваш сотрудник принес по: {profit_on_people:.0f} рублей(ю) прибыли")
+else:
+    print('Увы, надо работать лучше :(')
+
+# Задание 6
+
+first_distance = int(input('Со скольки км спортсмен начал ? >'))
+final_distance = int(input('Сколько км спортсмен должен пробежать ? > '))
+percent = int
+coin = int(1)
+while first_distance < final_distance:
+    percent = first_distance / 100 * 10
+    first_distance = first_distance + percent
+    coin = coin + 1
+else: print(coin)
