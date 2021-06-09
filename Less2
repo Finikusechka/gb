@@ -1,0 +1,74 @@
+#1
+
+ex_list = [1, "a", 3, True, 6.43]
+for i in ex_list:
+    print(f"{i} это {type(i)}")
+
+
+#2
+arr = list(map(int, input('Введите значения > ').split())) # 1 4 55 66 22
+var0 = int(0)
+var1 = int(1)
+len_arr = len(arr)
+effort = int(0)
+
+while effort < len_arr//2:
+    effort += 1
+    arr[var0], arr[var1] = arr[var1], arr[var0]
+    var0 += 2
+    var1 += 2
+print(arr)
+
+
+#3.1
+number = int(input('Введите номер месяца > '))
+arr = ['зима', 'весна', 'лето', 'осень']
+if number > 12 or number <= 0:
+    print("Нет такого месяца, введите число от 1 до 12")
+if number == 12 or 1 <= number <= 2:
+    print('Зима')
+if number >= 3 and number <= 5:
+    print('Весна')
+if number >= 6 and number <= 8:
+    print('Лето')
+if number == 9 or number == 10 or number == 11:
+    print('Осень')
+
+
+#3.2
+
+number = int(input('Введите номер месяца > '))
+season = {
+    12: 'зима', 1: 'зима', 2: 'зима',
+    3: 'весна', 4: 'весна', 5: 'весна',
+    6: 'лето', 7: 'лето', 8: 'лето',
+    9: 'осень', 10: 'осень', 11: 'осень'
+}
+print(season[number])
+
+
+#4
+var = input('Введите слова через пробел -> ')
+arr = var.split(" ")
+number_string = int(1)
+number_word = int(0)
+for i in arr:
+    print(f"{number_string} {arr[number_word][:10]}")
+    number_string += 1
+    number_word += 1
+
+#5
+number = int(input('Введите число > '))
+my_list = [7, 5, 3, 3, 2]
+count_arr = 0
+for i in my_list:
+    if number > my_list[count_arr]:
+        my_list.insert(count_arr, number)
+        break
+    if number == my_list[count_arr]:
+        my_list.insert(count_arr + 1, number)
+        break
+    count_arr += 1
+else:
+    my_list.append(number)
+print(my_list)
