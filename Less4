@@ -1,0 +1,100 @@
+#1 1. y=Noneовать скрипт, в котором должна быть предусмотрена функция расчета заработной платы сотрудника. В расчете необходимо использовать формулу: (выработка в часах*ставка в час) + премия.
+# Для выполнения расчета для конкретных значений необходимо запускать скрипт с параметрами.
+
+"""
+import sys
+hour = int(0)
+rate = int(0)
+salary = int(0)
+premium = int(0)
+def salary_fun(hour, rate, premium):
+    salary = hour * rate + premium
+    print(salary)
+salary_fun(int(sys.argv[1]), int(sys.argv[2]), int(sys.argv[3]))
+
+#2 2. Представлен список чисел. Необходимо вывести элементы исходного списка, значения которых больше предыдущего элемента.
+
+import random
+numbers_list = [random.randint(1, 1000) for x in range(random.randint(1, 10))]
+print(f'Начальный список {numbers_list}')
+i = int(0) #Номер индекса для обращения к списку с числами
+count = int(0) #Количество проходов, для исключения сравнения первого числа из списка с пустотой
+final_list = []
+for number in numbers_list:
+    if count != 0:
+        if number > numbers_list[i]:
+            final_list.append(number)
+        i += 1
+    else:
+        count += 1
+print(final_list)
+
+
+# 3. Для чисел в пределах от 20 до 240 найти числа, кратные 20 или 21. Необходимо решить задание в одну строку.
+import random
+numbers = [x for x in range(20, 240) if (x % 20 == 0) or (x % 21 == 0)]
+print(numbers)
+
+
+#4 Представлен список чисел. Определить элементы списка, не имеющие повторений. Сформировать итоговый массив чисел, соответствующих требованию.
+# Элементы вывести в порядке их следования в исходном списке. Для выполнения задания обязательно использовать генератор.
+
+number_list = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11]
+final_list = []
+count = int(0)
+for i in number_list:
+    if i != number_list[range(0, len(number_list))]
+
+# 5. Реализовать формирование списка, используя функцию range() и возможности генератора.
+# В список должны войти четные числа от 100 до 1000 (включая границы).
+# Необходимо получить результат вычисления произведения всех элементов списка.
+from functools import reduce
+def sum_fun(x, y):
+    return int(x) * int(y)
+
+number_list = [x for x in range(100, 1001) if x % 2 == 0]
+print(number_list)
+sum_all = reduce(sum_fun, number_list)
+print(sum_all)
+
+
+#7. Реализовать генератор с помощью функции с ключевым словом yield, создающим очередное значение.
+# При вызове функции должен создаваться объект-генератор.
+# Функция должна вызываться следующим образом: for el in fact(n).
+# Функция отвечает за получение факториала числа, а в цикле необходимо выводить только первые n чисел, начиная с 1! и до n!.
+#Подсказка: факториал числа n — произведение чисел от 1 до n. Например, факториал четырёх 4! = 1 * 2 * 3 * 4 = 24.
+from functools import reduce
+number = int(1)
+final_list = []
+i = int(1)
+def fact(n):
+    for i in range(n):
+        yield i
+
+for el in fact(4):
+    final_list.append(el + 1)
+print(final_list)
+number = reduce(lambda x, y: x * y, final_list, 1)
+print(number)
+"""
+#6 6. Реализовать два небольших скрипта:
+#а) итератор, генерирующий целые числа, начиная с указанного,
+#б) итератор, повторяющий элементы некоторого списка, определенного заранее.
+from itertools import count
+from itertools import cycle
+
+print('*' * 20, 'iterator 1')
+number = int(4)
+for number in count(number, 1):
+    if number > 10:
+        break
+    print(number)
+
+print('*' * 20, 'iterator 2')
+number_list = [1, 2, 3]
+meter = int(0)
+for number in cycle(number_list):
+    print(number)
+    meter +=1
+    if meter > 10:
+        exit(0)
