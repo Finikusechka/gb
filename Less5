@@ -1,0 +1,174 @@
+#1. Создать программно файл в текстовом формате, записать в него построчно данные, вводимые пользователем.
+#Об окончании ввода данных свидетельствует пустая строка.
+"""
+with open('test_file.txt', mode='a') as my_file:
+    while True:
+        line = input('Введите тест > ')
+        if line == '':
+            break
+        else:
+            my_file.write(line + '\n')
+
+#2. Создать текстовый файл (не программно), сохранить в нем несколько строк,
+# выполнить подсчет количества строк, количества слов в каждой строке.
+count =int(0)
+word_list = []
+with open('test_file.txt', 'r') as my_file:
+    while True:
+        lines = my_file.readline()
+        if not lines:
+            break
+        count += 1
+        word_list.append(lines)
+        print(lines.strip())
+    print(f'Количество строк: {count}')
+with open('test_file.txt', 'r') as my_file:
+    word_list = my_file.read().split()
+    for word in word_list:
+        print(word +' '+str(len(word)))
+
+№2 Вариант 2:
+with open ('test_file.txt') as my_file:
+    raws = my_file.readlines()
+    print(raws)
+    word_list = [raw.split() for raw in raws]
+    print(word_list)
+    len_raws = len(raws)
+    print(len_raws)
+    count_words = [len(x) for x in word_list]
+    print(count_words)
+
+#3. Создать текстовый файл (не программно), построчно записать фамилии сотрудников и величину их окладов (не менее 10 строк).
+#Определить, кто из сотрудников имеет оклад менее 20 тыс., вывести фамилии этих сотрудников.
+#Выполнить подсчет средней величины дохода сотрудников.
+y = []
+all_dic = {}
+salary_min = {}
+with open('salary.txt') as my_file:
+    lines = my_file.readline()
+    for x in my_file:
+        print(x)
+        y = (x.strip())
+        y = y.split()
+        all_dic[y[0]] = y[1]
+    print(all_dic)
+for i in all_dic.keys():
+    if int(all_dic[i]) <= 20000:
+        salary_min[f'{i}'] = all_dic[i]
+print(salary_min)
+
+Вариант 2:
+
+with open('salary.txt') as workers:
+    workes_salary = [x.split() for x in workers.readlines()]
+    final_workers = [{'name':x[0], 'salary':int(x[1])} for x in workes_salary]
+    for x in filter(lambda worker: worker['salary'] < 20000, final_workers):
+        print(x)
+
+
+
+# Создать (не программно) текстовый файл со следующим содержимым:
+# One — 1
+# Two — 2
+# Three — 3
+# Four — 4
+#
+# Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные.
+# При этом английские числительные должны заменяться на русские. Новый блок строк должен записываться в новый текстовый файл.
+translate = {'One': 'Один',
+             'Two': 'Два',
+             'Three': 'Три',
+             'Four': 'Четыре'}
+raw_convert = []
+with open('number.txt') as my_file:
+    for i in my_file.readlines():
+        word, number = i.split(' - ')
+        raw_convert.append(f'{translate[word]} - {number}')
+    print(raw_convert)
+
+
+# 5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
+# Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
+import xmlrpc.client
+from functools import reduce
+score = int(0)
+number = []
+with open('less5.txt', 'w+') as my_file:
+    my_file.write('22 33 3 4 8 5 3 33')
+with open('less5.txt', 'r') as my_file:
+    for i in my_file:
+        x = i
+    #x = x.split()
+    x = list(map(int, x.split()))
+    score = reduce(lambda z, y: z + y, x)
+    print(score)
+
+#5.2 Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
+#Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
+from random import randrange
+numbers = [randrange(1, 200) for x in range(5, 10)]
+with open('test_file_5.txt', 'w') as my_file:
+    my_file.write(str(numbers))
+
+numbers = [randrange(1, 200) for x in range(5, 10)]
+with open('test_file_6.txt', 'w') as my_file:
+    my_file.write(' '.join(map(str, numbers)))
+
+with open('test_file_5.txt') as my_file1, open('test_file_6.txt') as my_file2:
+
+
+#6. Необходимо создать (не программно) текстовый файл, где каждая строка описывает учебный предмет
+# и наличие лекционных, практических и лабораторных занятий по этому предмету и их количество.
+# Важно, чтобы для каждого предмета не обязательно были все типы занятий.
+# Сформировать словарь, содержащий название предмета и общее количество занятий по нему. Вывести словарь на экран.
+subjects = {}
+with open('education.txt') as f:
+    for raw in f:
+        subjects_info = raw.split()
+        name = subjects_info[0].rstrip(':')
+        subjects[name] = subjects_info[1:]
+
+result = {}
+for key, value in subjects.items():
+    result[key] = sum(
+        [
+            int(hours[:hours.index('(')])
+            for hours in value
+            if hours != '—'
+        ]
+    )
+print(result)
+
+
+# 7. Создать вручную и заполнить несколькими строками текстовый файл,
+# в котором каждая строка должна содержать данные о фирме: название, форма собственности, выручка, издержки.
+# Пример строки файла: firm_1 ООО 10000 5000.
+#
+# Необходимо построчно прочитать файл, вычислить прибыль каждой компании, а также среднюю прибыль.
+# Если фирма получила убытки, в расчет средней прибыли ее не включать.
+# Далее реализовать список. Он должен содержать словарь с фирмами и их прибылями, а также словарь со средней прибылью.
+# Если фирма получила убытки, также добавить ее в словарь (со значением убытков).
+import json
+
+all_string = []
+profit = int(0)
+profit_all = []
+profit_average = {}
+final_list = []
+profit_firm = {}
+with open('firm.txt') as my_file:
+    for i in my_file:
+        all_string = i.split()
+        profit = int(all_string[2]) - int(all_string[3])
+        profit_firm[all_string[0]] = profit
+        if profit > 0:
+            profit_all.append(profit)
+            #print(profit)
+    final_list.append(profit_firm)
+    final_list.append({'provit_avarage': f'{float(sum(profit_all) / len(profit_all))}'})
+with open('Final_list.json', 'w') as file_stream:
+    json.dump(final_list, file_stream)
+"""
+
+
+
